@@ -1,0 +1,15 @@
+# 忽略編譯後生成的 code
+/generated/
+/**/*.pb.ts
+/**/*.pb.go
+/**/grpc_*.ts
+
+# 忽略 protoc 缓存
+/.cache/
+/tmp/
+
+**/*.js
+**/*.js.map
+dist/
+
+/node_modules/

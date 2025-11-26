@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx client.ts"
+    "dev": "tsx client.ts",
+    "dev_api": "tsx client_api.ts"
   },
   "keywords": [],
   "author": "",

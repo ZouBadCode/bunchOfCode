@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "tsx client.ts",
     "dev_api": "tsx client_api.ts"
@@ -13,7 +14,9 @@
   "packageManager": "pnpm@10.11.0",
   "dependencies": {
     "@grpc/grpc-js": "^1.14.1",
-    "@grpc/proto-loader": "^0.8.0"
+    "@grpc/proto-loader": "^0.8.0",
+    "@mysten/sui": "^1.45.0",
+    "@protobuf-ts/grpcweb-transport": "^2.11.1"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

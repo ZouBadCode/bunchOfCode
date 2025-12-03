@@ -1,7 +1,11 @@
-import grpc = require("@grpc/grpc-js");
-import protoLoader = require("@grpc/proto-loader");
-import path = require("path");
+import grpc from "@grpc/grpc-js";
+import protoLoader from "@grpc/proto-loader";
+import path from "path";
+import { fileURLToPath } from "url";
 
+// ⭐ 在 ESM 裡手動定義 __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // 1) 指向 ledger_service.proto
 const PROTO_PATH = path.join(
   __dirname,

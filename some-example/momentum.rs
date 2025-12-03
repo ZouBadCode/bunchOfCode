@@ -4,7 +4,7 @@ use move_core_types::{account_address::AccountAddress, language_storage::StructT
 use shared_crypto::intent::{Intent, IntentMessage};
 use std::{collections::HashMap, str::FromStr};
 use sui_sdk::{
-    rpc_types::{Coin, SuiTransactionBlockResponseOptions}, types::{ㄞ
+    rpc_types::{Coin, SuiTransactionBlockResponseOptions}, types::{
         base_types::ObjectID, programmable_transaction_builder::ProgrammableTransactionBuilder,
         transaction::TransactionData,
     }, SuiClient, SuiClientBuilder

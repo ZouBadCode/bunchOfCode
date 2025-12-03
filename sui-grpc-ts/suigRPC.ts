@@ -5,6 +5,7 @@ import { fromBase64 } from '@mysten/sui/utils';
 import { momentumAddLiquidity } from './tx/momentum_add_liquidity.js';
 import { create } from 'domain';
 import { createPool } from './tx/momentum_create_pool.js';
+import { swap } from './tx/momentum_trade_clean.js';
 
 const grpcClient = new SuiGrpcClient({
 	network: 'testnet',
@@ -24,7 +25,7 @@ async function getKeypair(): Promise<Ed25519Keypair> {
 
 async function measureLatency() {
 	const signer = await getKeypair();
-	const tx = momentumAddLiquidity();
+	const tx = swap("0x404a7f46e5473495993ebddb764be27ece654edfe9917fa905424b56719de086", 1000, true, "0xa3593a0e01b6294da826ac24e0d5fdfbd276862fce7e1528136c8fa1f2b9b9c9", signer.toSuiAddress());
 
 	tx.setSender(signer.toSuiAddress());
 

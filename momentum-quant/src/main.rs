@@ -9,6 +9,7 @@ use sui_sdk_types::{Address, Digest};
 use sui_transaction_builder::unresolved::Input;
 use prost_types::FieldMask;
 use sui_rpc::proto::sui::rpc::v2::Object;
+use tokio::time::Instant;
 mod momentum;
 
 /// Enable / disable debug logs in main.rs.
@@ -29,14 +30,14 @@ const DEFAULT_TOKEN_OBJECT_ID: &str =
 
 /// Example private key (bech32 suiprivkey format).
 const EXAMPLE_PRIVATE_KEY: &str =
-    "INPUT_YOUR_PRIVATE_KEY_HERE_suiprivkey1";
+    "";
 
 const VERSIONED_OBJECT_ID: &str =
     "0x2375a0b1ec12010aaea3b2545acfa2ad34cfbba03ce4b59f4c39e1e25eed1b2a";
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     debug_main("[main] start");
-
+    let start = Instant::now();
     // 1. Decode private key from bech32 "suiprivkey..." format.
     let private_key = decode_sui_private_key(EXAMPLE_PRIVATE_KEY)?;
     let public_key = private_key.public_key();
@@ -46,7 +47,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     debug_main("[main] decoded private key and derived address");
 
     // 2. Create Sui gRPC client (testnet).
-    let mut client = Client::new(Client::MAINNET_FULLNODE)?;
+    let mut client = Client::new("http://3.114.103.176:443")?;
     println!("Sui gRPC client connected");
     debug_main("[main] Sui gRPC client created");
 
@@ -146,9 +147,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
     debug_main("[main] before execute_transaction");
     let response = exec_client.execute_transaction(request).await?;
     debug_main("[main] after execute_transaction");
-
+    let elapsed = start.elapsed();
     println!("Transaction submitted, response: {:?}", response.into_inner());
-
+    println!("Elapsed time: {:.3?}", elapsed);
     Ok(())
 }
 
